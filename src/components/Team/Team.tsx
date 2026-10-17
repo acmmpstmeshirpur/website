@@ -45,6 +45,14 @@ function Person({ member, index, featured }: { member: TeamMember; index: number
       <div className="person__details">
         <p className="person__role meta">{member.role}</p>
         <h3 className="person__name display">{member.name}</h3>
+        {member.email && (
+          <a className="person__email" href={`mailto:${member.email}`}>
+            {/* Break after "@" first, so the domain stays on one line. */}
+            {member.email.split('@')[0]}@<wbr />
+            {member.email.split('@').slice(1).join('@')}
+            <span className="visually-hidden"> (email {member.name})</span>
+          </a>
+        )}
         <ProfileLink member={member} />
       </div>
     </li>

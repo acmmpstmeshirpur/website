@@ -6,7 +6,7 @@ PHP admin page for upcoming events. It runs on standard cPanel shared hosting wi
 database or Node.js process.
 
 - **Design file (Figma):** https://www.figma.com/design/I71NU7dKD17i6MRPGYDA28 (colour tokens, type specimens, button components, section plan)
-- **Contact address used by the site:** `acm.mpstme.shirpur@gmail.com` (set in `src/data/site.ts`)
+- **Contact address used by the site:** `contact@mpstmeshirpur.acm.org` (set in `src/data/site.ts`)
 
 ---
 

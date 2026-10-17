@@ -9,7 +9,7 @@ export const site = {
   shortCode: 'ACM-SHR',
 
   /** Contact address used by every email button on the site. */
-  email: 'acm.mpstme.shirpur@gmail.com',
+  email: 'contact@mpstmeshirpur.acm.org',
 
   /** From the ACM Certificate of Charter. */
   charteredOn: '2025-10-27',

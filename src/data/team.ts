@@ -4,6 +4,7 @@
  * To add a LinkedIn profile, replace `null` with the full URL, e.g.
  *   linkedin: 'https://www.linkedin.com/in/username/'
  * While it is `null`, the site shows "Profile link pending" instead of a link.
+ * `email` is optional; when set, the address is shown on the card above LinkedIn.
  *
  * Photos: add the original to Assets/office bearers/, list it in
  * scripts/process_images.py, run `npm run images`, then set `image` to the
@@ -15,6 +16,7 @@ export interface TeamMember {
   role: string;
   image: string;
   linkedin: string | null;
+  email?: string;
 }
 
 export const team: TeamMember[] = [
@@ -23,12 +25,14 @@ export const team: TeamMember[] = [
     role: 'Faculty Sponsor',
     image: 'assets/team/praveen-kumar-loharkar',
     linkedin: 'https://www.linkedin.com/in/praveenkumarloharkar/',
+    email: 'faculty-sponsor@mpstmeshirpur.acm.org',
   },
   {
     name: 'Mohammad Saad Nathani',
     role: 'Chair',
     image: 'assets/team/mohammad-saad-nathani',
     linkedin: 'https://www.linkedin.com/in/saad-nathani/',
+    email: 'chair@mpstmeshirpur.acm.org',
   },
   {
     name: 'Shashwat Jain',

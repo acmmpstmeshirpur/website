@@ -98,6 +98,26 @@
   --icon-cut: var(--c-paper);
 }
 
+/* Role address, e.g. chair@…: mono like the record labels, wraps on narrow cards. */
+.person__email {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--c-burnt-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--c-line-paper);
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .person__email:hover {
+    text-decoration-color: currentColor;
+  }
+}
+
 .person__link-icon {
   width: 18px;
   height: 18px;
