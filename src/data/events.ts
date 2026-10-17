@@ -88,8 +88,8 @@ export const events: EventRecord[] = [
         caption: 'Introducing ACM at the start of the workshop.',
       },
       {
-        src: 'assets/events/initial-commit/session',
-        alt: 'A speaker addressing students seated at laptops in a tiered lecture hall',
+        src: 'assets/events/initial-commit/in-session',
+        alt: 'A speaker, seen from behind, addressing students seated at laptops in a tiered lecture hall',
         caption: 'The workshop in session.',
       },
     ],

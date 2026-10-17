@@ -17,14 +17,14 @@
     "width": 3000,
     "height": 4496
   },
-  "assets/events/initial-commit/session": {
+  "assets/events/initial-commit/in-session": {
     "widths": [
       640,
       1280,
       1920
     ],
-    "width": 4496,
-    "height": 3000
+    "width": 2000,
+    "height": 1146
   },
   "assets/events/sasverse/overview": {
     "widths": [

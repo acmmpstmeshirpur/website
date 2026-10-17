@@ -22,3 +22,6 @@ skills-lock.json
 # Original photos stay off GitHub (full resolution, may hold location data).
 # The site uses the processed copies in public/assets/.
 /Assets/
+
+# Python cache
+__pycache__/

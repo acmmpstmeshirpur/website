@@ -25,7 +25,7 @@ EVENTS = {
     "initial-commit": [
         ("Events/Initial Commit/Photos/wmremove-transformed(3).jpeg", "group", None),
         ("Events/Initial Commit/Photos/wmremove-transformed(1).jpeg", "opening-address", None),
-        ("Events/Initial Commit/Photos/wmremove-transformed(2).jpeg", "session", None),
+        ("Events/Initial Commit/Photos/session-speaker.jpg", "in-session", None),
     ],
     "sasverse": [
         ("Events/SASvers/Photo/WhatsApp Image 2026-10-09 at 6.59.41 PM (1).jpeg", "overview", (0, 0, 1230, 820)),
