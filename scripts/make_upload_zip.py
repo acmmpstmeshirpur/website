@@ -8,16 +8,23 @@ world-writable 0666, which PHP refuses to run on most shared hosts.
 """
 
 import os
+import time
 import zipfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'dist')
 OUT = os.path.join(ROOT, 'acm-site-upload.zip')
 
+# ZIP times carry no time zone, so the server reads them in its own zone. Local
+# time (IST, ahead of the server) produced future dates that made browsers keep
+# stale pages. A UTC time a day in the past is safely "earlier" everywhere.
+STAMP = time.gmtime(time.time() - 86400)[:6]
+
 
 def entry(name: str, mode: int, is_dir: bool = False) -> zipfile.ZipInfo:
     info = zipfile.ZipInfo(name + ('/' if is_dir else ''))
     info.external_attr = ((0o040000 if is_dir else 0o100000) | mode) << 16
+    info.date_time = STAMP
     info.compress_type = zipfile.ZIP_DEFLATED
     return info
 
