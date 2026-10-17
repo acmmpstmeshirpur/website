@@ -1,0 +1,24 @@
+# Dependencies and build output
+node_modules
+dist
+acm-site-upload.zip
+*.tsbuildinfo
+*.log
+
+# Local environment (production values live in .env.production)
+.env
+.env.local
+
+# Events data is written by the live admin page, never committed
+public/data/
+
+# Local AI and design tooling
+.agents
+.claude
+.taste-skill
+.playwright-mcp
+skills-lock.json
+
+# Original photos stay off GitHub (full resolution, may hold location data).
+# The site uses the processed copies in public/assets/.
+Assets/

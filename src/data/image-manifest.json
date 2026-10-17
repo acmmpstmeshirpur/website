@@ -1,0 +1,117 @@
+{
+  "assets/events/initial-commit/group": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4496,
+    "height": 3000
+  },
+  "assets/events/initial-commit/opening-address": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 3000,
+    "height": 4496
+  },
+  "assets/events/initial-commit/session": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "width": 4496,
+    "height": 3000
+  },
+  "assets/events/sasverse/overview": {
+    "widths": [
+      640,
+      1230
+    ],
+    "width": 1230,
+    "height": 820
+  },
+  "assets/events/sasverse/sas-studio": {
+    "widths": [
+      640,
+      1230
+    ],
+    "width": 1230,
+    "height": 820
+  },
+  "assets/events/sasverse/session": {
+    "widths": [
+      640,
+      1230
+    ],
+    "width": 1230,
+    "height": 820
+  },
+  "assets/team/praveen-kumar-loharkar": {
+    "widths": [
+      400,
+      800
+    ],
+    "width": 1539,
+    "height": 1924
+  },
+  "assets/team/mohammad-saad-nathani": {
+    "widths": [
+      400,
+      744
+    ],
+    "width": 744,
+    "height": 930
+  },
+  "assets/team/shashwat-jain": {
+    "widths": [
+      400,
+      800
+    ],
+    "width": 1886,
+    "height": 2358
+  },
+  "assets/team/reshma-patil": {
+    "widths": [
+      400,
+      800
+    ],
+    "width": 3344,
+    "height": 4180
+  },
+  "assets/team/pranav-mundhra": {
+    "widths": [
+      400,
+      800
+    ],
+    "width": 951,
+    "height": 1189
+  },
+  "assets/team/riddhima-sharma": {
+    "widths": [
+      400,
+      800
+    ],
+    "width": 864,
+    "height": 1080
+  },
+  "assets/team/aditya-agrawal": {
+    "widths": [
+      400,
+      800
+    ],
+    "width": 812,
+    "height": 1016
+  },
+  "assets/team/anushka-sharma": {
+    "widths": [
+      400,
+      800
+    ],
+    "width": 816,
+    "height": 1020
+  }
+}

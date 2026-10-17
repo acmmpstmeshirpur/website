@@ -1,0 +1,351 @@
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--c-charcoal);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-ui) ease;
+}
+
+.nav--scrolled {
+  border-bottom-color: var(--c-line);
+}
+
+.nav__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  height: 72px;
+}
+
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--c-cream);
+  min-height: 44px;
+}
+
+.nav__emblem {
+  flex: none;
+  color: var(--c-cream);
+  overflow: visible;
+}
+
+/* Hover: the beacon "pings". A signal diamond sends out from the seal while
+   the inner amber outline steps outward and the core lifts slightly. */
+.nav__emblem .emblem__ping,
+.nav__emblem .emblem__mid,
+.nav__emblem .emblem__core {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.nav__emblem .emblem__mid,
+.nav__emblem .emblem__core {
+  transition:
+    transform 320ms var(--ease-out),
+    fill 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .nav__brand:hover .emblem__ping {
+    animation: emblem-ping 760ms var(--ease-out);
+  }
+
+  .nav__brand:hover .emblem__mid {
+    transform: scale(1.09);
+  }
+
+  .nav__brand:hover .emblem__core {
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav__brand:focus-visible .emblem__ping {
+    animation: emblem-ping 760ms var(--ease-out);
+  }
+}
+
+/* Reduced motion keeps a colour change as feedback, without movement. */
+@media (hover: hover) and (pointer: fine) {
+  .nav__brand:hover .emblem__core {
+    fill: var(--c-amber-high);
+  }
+}
+
+@keyframes emblem-ping {
+  from {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.32);
+  }
+}
+
+.nav__brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.nav__brand-name {
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+.nav__brand-sub {
+  color: var(--c-amber);
+  font-size: 0.75rem;
+  margin-top: 3px;
+}
+
+.nav__links ul {
+  display: flex;
+  align-items: center;
+  gap: clamp(4px, 1.4vw, 20px);
+}
+
+.nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 8px;
+  font-size: 0.96875rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--c-cream);
+}
+
+/* Active section: a small amber index mark under the link. */
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: 6px;
+  height: 2px;
+  background: var(--c-amber);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 320ms var(--ease-out);
+}
+
+.nav__link[aria-current='true']::after {
+  transform: scaleX(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav__link:not(.nav__link--action):hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.nav__link--action {
+  margin-left: 8px;
+  padding: 0 18px;
+  background: var(--c-amber);
+  color: var(--c-carbon);
+  font-weight: 600;
+  transition:
+    background-color var(--dur-ui) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.nav__link--action::after {
+  display: none;
+}
+
+.nav__link--action:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav__link--action:hover {
+    background: var(--c-amber-high);
+  }
+}
+
+/* Secondary button: outlined, so "Join ACM" stays the one filled action. */
+.nav__link--outline {
+  margin-left: 8px;
+  padding: 0 16px;
+  box-shadow: inset 0 0 0 1.5px var(--c-amber);
+  color: var(--c-amber);
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-ui) ease,
+    color var(--dur-ui) ease,
+    transform var(--dur-press) var(--ease-out);
+}
+
+.nav__link--outline::after {
+  display: none;
+}
+
+.nav__link--outline:active {
+  transform: scale(0.97);
+}
+
+.nav__link--outline[aria-current='page'] {
+  background: var(--c-olive-high);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav__link--outline:hover {
+    background: var(--c-amber);
+    color: var(--c-carbon);
+  }
+}
+
+.nav__panel-list a[aria-current='page'] {
+  color: var(--c-amber);
+}
+
+.nav__toggle {
+  display: none;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 0 4px 0 12px;
+  color: var(--c-cream);
+}
+
+.nav__toggle-icon {
+  position: relative;
+  width: 26px;
+  height: 14px;
+}
+
+.nav__toggle-icon span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transition: transform 260ms var(--ease-out);
+}
+
+.nav__toggle-icon span:first-child {
+  top: 2px;
+}
+
+.nav__toggle-icon span:last-child {
+  bottom: 2px;
+}
+
+.nav--open .nav__toggle-icon span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.nav--open .nav__toggle-icon span:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+.nav__panel {
+  position: fixed;
+  inset: 72px 0 0 0;
+  background: var(--c-charcoal);
+  border-top: 1px solid var(--c-line);
+  padding: 24px var(--gutter) 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.nav__panel[hidden] {
+  display: none;
+}
+
+.nav__panel-list li {
+  border-bottom: 1px solid var(--c-line);
+}
+
+.nav__panel-list a {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 14px 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 12vw, 3.5rem);
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--c-cream);
+}
+
+.nav__panel-list .meta {
+  color: var(--c-amber);
+  font-family: var(--font-mono);
+  font-size: var(--fs-meta);
+}
+
+.nav__panel-foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--c-cream-dim);
+  padding-top: 24px;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav__panel:not([hidden]) li {
+    animation: nav-item-in 420ms var(--ease-out) both;
+  }
+
+  .nav__panel li:nth-child(2) { animation-delay: 40ms; }
+  .nav__panel li:nth-child(3) { animation-delay: 80ms; }
+  .nav__panel li:nth-child(4) { animation-delay: 120ms; }
+  .nav__panel li:nth-child(5) { animation-delay: 160ms; }
+  .nav__panel li:nth-child(6) { animation-delay: 200ms; }
+  .nav__panel li:nth-child(7) { animation-delay: 240ms; }
+}
+
+@keyframes nav-item-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+}
+
+@media (max-width: 400px) {
+  .nav__brand-name {
+    font-size: 1.125rem;
+  }
+
+  .nav__toggle-label {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav__links {
+    display: none;
+  }
+
+  .nav__toggle {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 901px) {
+  .nav__panel {
+    display: none !important;
+  }
+}

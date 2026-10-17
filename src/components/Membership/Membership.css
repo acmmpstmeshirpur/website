@@ -1,0 +1,207 @@
+.cta-section__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  gap: clamp(40px, 6vw, 112px);
+  align-items: center;
+}
+
+.cta-section__grid--flip {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+}
+
+.cta-section__file {
+  margin-bottom: 18px;
+}
+
+.cta-section__text {
+  margin-top: clamp(24px, 2.6vw, 36px);
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  max-width: 34em;
+  text-wrap: pretty;
+}
+
+.cta-section__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 24px;
+  margin-top: clamp(28px, 3vw, 40px);
+}
+
+.cta-section__fine {
+  margin-top: 16px;
+  font-size: var(--fs-small);
+  color: var(--c-cream-dim);
+}
+
+.cta-section__branch {
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  color: var(--c-cream-dim);
+  margin-bottom: 18px;
+}
+
+.cta-section__caret {
+  color: var(--c-amber);
+}
+
+.membership .h2 {
+  color: var(--c-carbon);
+}
+
+.membership .cta-section__file {
+  color: var(--c-carbon);
+}
+
+.proposal .h2 {
+  color: var(--c-cream);
+}
+
+/* Copy address */
+.copy-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.copy-email__icon {
+  width: 18px;
+  height: 18px;
+}
+
+.copy-email--ink {
+  color: var(--c-carbon);
+}
+
+/* Email draft preview */
+.form-fax {
+  position: relative;
+  padding: clamp(20px, 2.4vw, 32px);
+  font-size: 0.9375rem;
+}
+
+.form-fax--paper {
+  background: var(--c-paper);
+  color: var(--c-carbon);
+  transform: rotate(1.2deg);
+}
+
+.form-fax--dark {
+  background: var(--c-charcoal);
+  color: var(--c-cream);
+  border: 1px solid var(--c-line);
+  transform: rotate(-1deg);
+}
+
+.form-fax__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid currentColor;
+}
+
+.form-fax__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.625rem;
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.form-fax__envelope div {
+  display: grid;
+  grid-template-columns: 5.5em minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--form-line);
+}
+
+.form-fax__envelope dd {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.form-fax--paper {
+  --form-line: var(--c-line-paper);
+  --form-label: var(--c-burnt-ink);
+}
+
+.form-fax--dark {
+  --form-line: var(--c-line);
+  --form-label: var(--c-green);
+}
+
+.form-fax__envelope dt,
+.form-fax__head .meta {
+  color: var(--form-label);
+  padding-top: 0.15em;
+}
+
+.form-fax__fields {
+  margin-top: 8px;
+}
+
+.form-fax__fields li {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 12px 0 4px;
+}
+
+.form-fax__fields li span {
+  flex: none;
+  max-width: 70%;
+}
+
+/* Blank line to fill in */
+.form-fax__fields li::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--form-line);
+  transform: translateY(-4px);
+}
+
+.form-fax__note {
+  margin-top: 20px;
+  font-size: 0.8125rem;
+  color: var(--form-label);
+}
+
+@media (max-width: 1000px) {
+  .cta-section__grid,
+  .cta-section__grid--flip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cta-section__grid--flip > :first-child {
+    order: 2;
+  }
+
+  .form-fax--paper,
+  .form-fax--dark {
+    transform: none;
+    max-width: 560px;
+  }
+}
+
+@media (max-width: 520px) {
+  .cta-section__actions .btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .form-fax__envelope div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+}
