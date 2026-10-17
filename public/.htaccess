@@ -4,6 +4,11 @@
 Options -Indexes
 DirectoryIndex index.html index.php
 
+# The GitHub deploy keeps its list of uploaded files here; it is not for visitors.
+<Files ".ftp-deploy-sync-state.json">
+  Require all denied
+</Files>
+
 # --- Force HTTPS (uncomment once the SSL certificate is active in cPanel) ---
 # <IfModule mod_rewrite.c>
 #   RewriteEngine On

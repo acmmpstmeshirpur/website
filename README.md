@@ -99,7 +99,27 @@ Certificate of Charter, linked from the About section and the footer.
 
 ## Deploying to cPanel
 
-### 1. Set the site address (once)
+### Automatic (GitHub Actions)
+
+Every push to `main` on https://github.com/acmmpstmeshirpur/website builds the site and
+uploads it to `public_html` over FTPS (`.github/workflows/deploy.yml`). Progress and errors
+show under the repository's **Actions** tab; a deploy takes about a minute. It can also be
+run by hand there with **Run workflow**.
+
+One-time setup:
+
+1. cPanel → **FTP Accounts** → create an account (e.g. `deploy`) with **Directory** set to
+   exactly `public_html`.
+2. cPanel → FTP Accounts → that account → **Configure FTP Client**: note the FTP server name.
+3. GitHub → repository **Settings → Secrets and variables → Actions** → add
+   `FTP_SERVER`, `FTP_USERNAME` (the full `deploy@…` name) and `FTP_PASSWORD`.
+
+The deploy only uploads or removes files that come from the build, so the events saved by
+the admin page and the admin password stay put. The manual steps below still work.
+
+### Manual
+
+#### 1. Set the site address (once)
 
 Edit `.env.production` and set the public address, without a trailing slash:
 
@@ -109,7 +129,7 @@ VITE_SITE_URL=https://your-domain.example
 
 This fills in the canonical URL and social-share image, and adds `sitemap.xml` and `robots.txt` to the build. If you leave it empty the site still works, but link previews on WhatsApp, LinkedIn and similar apps may not show the image.
 
-### 2. Build and pack
+#### 2. Build and pack
 
 ```bash
 npm run build
@@ -118,7 +138,7 @@ npm run zip
 
 `acm-site-upload.zip` now holds everything in `dist/`. Use this script rather than Windows' own zip: it writes forward-slash paths and 0644/0755 permissions, without which cPanel extracts broken or world-writable files.
 
-### 3. Upload
+#### 3. Upload
 
 1. Log in to cPanel and open **File Manager**.
 2. Go to `public_html` (or the document root of the domain or sub-domain you want to use). The site uses relative paths, so it also works inside a sub-folder such as `public_html/acm/`.
@@ -126,13 +146,13 @@ npm run zip
 4. Upload `acm-site-upload.zip`, right-click it, **Extract** into the same folder, then delete the zip.
 5. Turn on **Settings → Show Hidden Files** in File Manager and check that `.htaccess` is there.
 
-### 4. Domain and HTTPS
+#### 4. Domain and HTTPS
 
 - For a sub-domain (for example `acm.yourcollege.edu`), create it under **Domains** in cPanel and note its document root. Upload into that folder.
 - Under **SSL/TLS Status**, run AutoSSL so the domain gets a certificate.
 - When `https://` works, open `.htaccess` on the server and uncomment the four "Force HTTPS" lines.
 
-### 5. Check the live site
+#### 5. Check the live site
 
 - The page loads over `https://` with no browser warnings.
 - Photos and portraits appear, and the condensed headline font loads.
