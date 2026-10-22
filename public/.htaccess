@@ -9,12 +9,36 @@ DirectoryIndex index.html index.php
   Require all denied
 </Files>
 
-# --- Force HTTPS (uncomment once the SSL certificate is active in cPanel) ---
-# <IfModule mod_rewrite.c>
-#   RewriteEngine On
-#   RewriteCond %{HTTPS} off
-#   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-# </IfModule>
+# --- Addresses ---
+# One folder answers two addresses:
+#   mpstmeshirpur.acm.org (and www.)  the public site; /admin does not exist here.
+#   mpstmeshirpur.hosting.acm.org     the committee's address: its front page opens
+#                                     cPanel, /admin/ is the events admin, and any
+#                                     other page is sent to the public site.
+# Redirects are 302 (temporary) so browsers do not remember them for good.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # cPanel's SSL certificate checks must keep working on every address.
+  RewriteRule ^\.well-known/ - [L]
+
+  # Always HTTPS (the admin login must never travel unencrypted).
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # Public addresses: no admin page.
+  RewriteCond %{HTTP_HOST} !^mpstmeshirpur\.hosting\.acm\.org$ [NC]
+  RewriteRule ^admin(/|$) - [R=404,L]
+
+  # Hosting address: front page opens cPanel.
+  RewriteCond %{HTTP_HOST} ^mpstmeshirpur\.hosting\.acm\.org$ [NC]
+  RewriteRule ^$ https://mpstmeshirpur.hosting.acm.org:2083/ [R=302,L]
+
+  # Hosting address: everything except the admin page goes to the public site.
+  RewriteCond %{HTTP_HOST} ^mpstmeshirpur\.hosting\.acm\.org$ [NC]
+  RewriteCond %{REQUEST_URI} !^/admin(/|$)
+  RewriteRule ^(.*)$ https://mpstmeshirpur.acm.org/$1 [R=302,L]
+</IfModule>
 
 # --- Correct types for modern assets ---
 <IfModule mod_mime.c>

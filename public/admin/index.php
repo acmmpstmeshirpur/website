@@ -4,8 +4,10 @@
  *
  * Saves events to ../data/upcoming.json, which upcoming.html reads on every visit.
  *
- * Access: this folder must be password-protected with cPanel > Directory Privacy.
- * The page refuses to run until it is, so it is never left open by mistake.
+ * Access: only at https://mpstmeshirpur.hosting.acm.org/admin/ (the public address
+ * answers "not found"), and the folder must be password-protected with
+ * cPanel > Directory Privacy. The page refuses to run until it is, so it is never
+ * left open by mistake.
  * Works on PHP 7.4 and newer.
  */
 
@@ -14,13 +16,21 @@ declare(strict_types=1);
 const DATA_FILE = __DIR__ . '/../data/upcoming.json';
 const MAX_TITLE = 120;
 const MAX_DESC = 600;
+const ADMIN_HOST = 'mpstmeshirpur.hosting.acm.org';
+const PUBLIC_SITE = 'https://mpstmeshirpur.acm.org';
 
 // "Today" for past-date checks, in the chapter's time zone rather than the server's.
 date_default_timezone_set('Asia/Kolkata');
 
 header('X-Robots-Tag: noindex, nofollow');
 header('Cache-Control: no-store');
-header("Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'");
+header("Content-Security-Policy: default-src 'self'; img-src 'self' " . PUBLIC_SITE . "; style-src 'self' 'unsafe-inline'; script-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'");
+
+// Second lock behind the .htaccess rule: the public address never shows this page.
+if (strtolower((string) ($_SERVER['HTTP_HOST'] ?? '')) !== ADMIN_HOST) {
+    http_response_code(404);
+    exit;
+}
 
 // Set by Apache only after a successful Directory Privacy login. PHP_AUTH_USER is
 // deliberately not used: it can come from a request header on unprotected folders.
@@ -281,7 +291,7 @@ function render_page(string $title, string $body, string $user = ''): void
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title><?= h($title) ?> — ACM Student Chapter</title>
-<link rel="icon" type="image/svg+xml" href="../seal-v3.svg">
+<link rel="icon" type="image/svg+xml" href="<?= PUBLIC_SITE ?>/seal-v3.svg">
 <style>
 :root{--charcoal:#171c1b;--olive:#292f27;--olive-high:#333a30;--cream:#e8dcc0;--cream-dim:#b9b09a;--carbon:#1c211e;--amber:#e6a34a;--amber-high:#f0b45f;--burnt:#e08a55;--green:#93a28a;--line:#454c41}
 *{box-sizing:border-box}
@@ -334,8 +344,8 @@ input[type=date]{color-scheme:dark}
 </head>
 <body>
 <header class="bar">
-  <a class="meta amber" href="../">ACM Student Chapter · Admin</a>
-  <span class="meta dim"><?= $user !== '' ? 'Signed in as ' . h($user) . ' · ' : '' ?><a href="../upcoming.html" target="_blank" rel="noopener">View page</a></span>
+  <a class="meta amber" href="<?= PUBLIC_SITE ?>/">ACM Student Chapter · Admin</a>
+  <span class="meta dim"><?= $user !== '' ? 'Signed in as ' . h($user) . ' · ' : '' ?><a href="<?= PUBLIC_SITE ?>/upcoming.html" target="_blank" rel="noopener">View page</a></span>
 </header>
 <main class="wrap">
   <h1>Upcoming events.</h1>
