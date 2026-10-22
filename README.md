@@ -150,7 +150,7 @@ npm run zip
 
 - For a sub-domain (for example `acm.yourcollege.edu`), create it under **Domains** in cPanel and note its document root. Upload into that folder.
 - Under **SSL/TLS Status**, run AutoSSL so the domain gets a certificate.
-- When `https://` works, open `.htaccess` on the server and uncomment the four "Force HTTPS" lines.
+- HTTPS is enforced by `public/.htaccess` (every `http://` request is redirected).
 
 #### 5. Check the live site
 
@@ -165,10 +165,19 @@ To update the live site later: make the change, run `npm run build` and `npm run
 
 ---
 
+## The two addresses
+
+Both addresses serve the same `public_html` folder; rules in `public/.htaccess` tell them apart.
+
+| Address | What it does |
+| --- | --- |
+| `https://mpstmeshirpur.acm.org` (and `www.`) | The public website. `/admin` returns "not found" here. |
+| `https://mpstmeshirpur.hosting.acm.org` | For the committee: the front page opens cPanel, `/admin/` is the events admin, any other page is sent to the public site. |
+
 ## Upcoming events and the admin page
 
 Upcoming events are not in the code. Committee members manage them at
-`https://mpstmeshirpur.acm.org/admin/`, which saves them to `public_html/data/upcoming.json`.
+`https://mpstmeshirpur.hosting.acm.org/admin/`, which saves them to `public_html/data/upcoming.json`.
 `upcoming.html` reads that file on every visit, so changes are live immediately and past
 events drop off by themselves.
 
