@@ -27,11 +27,22 @@ export default function Footer() {
             <h3 className="meta footer__label">Chapter</h3>
             <p>{site.fullName}</p>
             <p>{site.location}</p>
-            <a className="footer__charter" href={site.charterCertificateUrl} target="_blank" rel="noopener noreferrer">
-              Certificate of Charter
-              <ArrowUpRight className="footer__ext" />
-              <span className="visually-hidden"> (opens in a new tab)</span>
-            </a>
+            <ul className="footer__docs">
+              <li>
+                <a href={site.charterCertificateUrl} target="_blank" rel="noopener noreferrer">
+                  Certificate of Charter
+                  <ArrowUpRight className="footer__ext" />
+                  <span className="visually-hidden"> (opens in a new tab)</span>
+                </a>
+              </li>
+              <li>
+                <a href={site.constitutionUrl} target="_blank" rel="noopener noreferrer">
+                  Constitution
+                  <ArrowUpRight className="footer__ext" />
+                  <span className="visually-hidden"> (opens in a new tab)</span>
+                </a>
+              </li>
+            </ul>
           </div>
 
           <nav className="footer__col" aria-label="Footer">

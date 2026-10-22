@@ -17,6 +17,9 @@ export const site = {
   /** Public view of the Certificate of Charter. */
   charterCertificateUrl: 'https://drive.google.com/file/d/1dCWgMd0JBi9uyY1SfL-BdhNdvPvOfhCg/view?usp=sharing',
 
+  /** Public view of the chapter constitution. */
+  constitutionUrl: 'https://drive.google.com/file/d/16dxM7-fjR7Z39zMHRghtoWz_5fnWhRDO/view?usp=sharing',
+
   location: 'Shirpur, Maharashtra, India',
   /** Campus name shown as the "Station" in the hero strip and footer. */
   station: 'MPTP Shirpur',
